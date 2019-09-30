@@ -29,6 +29,7 @@ const renderField = ({
 
 let ValidationForm = props => {
   const { handleSubmit, submitting, typeValue } = props;
+  // const [time, setTime] = useState("00:00:00");
 
   const typeInputs = () => {
     if (typeValue === "pizza") {

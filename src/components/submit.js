@@ -1,8 +1,6 @@
 import { SubmissionError } from "redux-form";
 
 async function submitToSever(values) {
-  console.log(values);
-  console.log(JSON.stringify(values));
   try {
     let response = await fetch(
       "https://frosty-wood-6558.getsandbox.com/dishes",
@@ -14,6 +12,7 @@ async function submitToSever(values) {
         body: JSON.stringify(values)
       }
     );
+
     let responseJson = await response.json();
     return responseJson;
   } catch (error) {
@@ -62,13 +61,7 @@ const submit = values => {
         spiciness_scale: "The number must be an integer between 0 and 2!"
       });
   }
-  submitToSever({
-    name: values.name,
-    preparation_time: values.preparation_time,
-    type: values.type,
-    no_of_slices: Number(values.no_of_slices),
-    diameter: Number(values.diameter)
-  });
+  submitToSever(values);
 };
 
 export default submit;

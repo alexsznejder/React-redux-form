@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  width: 500px;
+  margin: 0 auto;
+  align-items: stretch;
+  flex-direction: column;
+  padding: 50px 100px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 17px;
+}

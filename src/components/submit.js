@@ -12,7 +12,6 @@ async function submitToSever(values) {
         body: JSON.stringify(values)
       }
     );
-
     let responseJson = await response.json();
     return responseJson;
   } catch (error) {
@@ -20,7 +19,7 @@ async function submitToSever(values) {
   }
 }
 
-const submit = values => {
+function submit(values) {
   if (!values.name)
     throw new SubmissionError({
       name: "Required!"
@@ -62,6 +61,6 @@ const submit = values => {
       });
   }
   submitToSever(values);
-};
+}
 
 export default submit;

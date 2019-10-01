@@ -28,7 +28,7 @@ const renderField = ({
 );
 
 let ValidationForm = props => {
-  const { handleSubmit, submitting, typeValue } = props;
+  const { handleSubmit, submitting, typeValue, reset, pristine } = props;
   // const [time, setTime] = useState("00:00:00");
 
   const typeInputs = () => {
@@ -98,6 +98,14 @@ let ValidationForm = props => {
       <div className="buttonContainer">
         <button className="saveButton" type="submit" disabled={submitting}>
           Save
+        </button>
+        <button
+          className="resetButton"
+          type="button"
+          disabled={pristine || submitting}
+          onClick={reset}
+        >
+          Clear Form
         </button>
       </div>
     </form>

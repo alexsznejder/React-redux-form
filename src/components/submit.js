@@ -61,6 +61,7 @@ function submit(values) {
       });
   }
   submitToSever(values);
+  this.props.reset();
 }
 
 export default submit;

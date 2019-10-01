@@ -27,11 +27,10 @@ const renderField = ({
   </div>
 );
 
-let ValidationForm = props => {
-  const { handleSubmit, submitting, typeValue, reset, pristine } = props;
-  // const [time, setTime] = useState("00:00:00");
+class ValidationForm extends React.Component {
+  typeInputs = () => {
+    const { typeValue } = this.props;
 
-  const typeInputs = () => {
     if (typeValue === "pizza") {
       return (
         <>
@@ -78,39 +77,43 @@ let ValidationForm = props => {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit(submit)} noValidate>
-      <Field name="name" type="text" label="Name" component={renderField} />
-      <Field
-        name="preparation_time"
-        type="time"
-        label="Preparation Time"
-        step={5}
-        component={renderField}
-      />
-      <Field name="type" type="select" label="Type" component={renderField}>
-        <option></option>
-        <option value="pizza">pizza</option>
-        <option value="soup">soup</option>
-        <option value="sandwich">sandwich</option>
-      </Field>
-      {typeInputs()}
-      <div className="buttonContainer">
-        <button className="saveButton" type="submit" disabled={submitting}>
-          Save
-        </button>
-        <button
-          className="resetButton"
-          type="button"
-          disabled={pristine || submitting}
-          onClick={reset}
-        >
-          Clear Form
-        </button>
-      </div>
-    </form>
-  );
-};
+  render() {
+    const { handleSubmit, submitting, reset, pristine } = this.props;
+
+    return (
+      <form onSubmit={handleSubmit(submit.bind(this))} noValidate>
+        <Field name="name" type="text" label="Name" component={renderField} />
+        <Field
+          name="preparation_time"
+          type="time"
+          label="Preparation Time"
+          step={5}
+          component={renderField}
+        />
+        <Field name="type" type="select" label="Type" component={renderField}>
+          <option></option>
+          <option value="pizza">pizza</option>
+          <option value="soup">soup</option>
+          <option value="sandwich">sandwich</option>
+        </Field>
+        {this.typeInputs()}
+        <div className="buttonContainer">
+          <button className="saveButton" type="submit" disabled={submitting}>
+            Save
+          </button>
+          <button
+            className="resetButton"
+            type="button"
+            disabled={pristine || submitting}
+            onClick={reset}
+          >
+            Clear Form
+          </button>
+        </div>
+      </form>
+    );
+  }
+}
 
 ValidationForm = reduxForm({
   form: "validationForm"
